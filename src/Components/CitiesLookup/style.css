@@ -1,0 +1,18 @@
+.cities-lookup ul {
+    width: 70vh;
+    margin: 0 auto;
+    list-style-type: none
+}
+
+.cities-lookup ul li {
+    cursor: pointer;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.cities-lookup ul li:hover {
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 1px;
+    border-radius: 2px;
+}

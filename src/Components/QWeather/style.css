@@ -1,0 +1,24 @@
+.qweather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.qweather form label {
+    margin-right: 1rem;
+}
+
+.qweather form input {
+    margin-right: 1rem;
+    width: 20rem;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.5rem;
+}
+
+.qweather form button {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}

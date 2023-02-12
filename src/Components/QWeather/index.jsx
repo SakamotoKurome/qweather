@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCitiesLookupSaga, getTopCitiesSaga } from '../Store/actions';
+import { getCitiesLookupSaga, getTopCitiesSaga } from '../../Store/actions';
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 function QWeather() {
     const [cityInputTextValue, setCityInputTextValue] = useState('');
@@ -15,8 +16,12 @@ function QWeather() {
 
     const handleSumit = (e) => {
         e.preventDefault();
-        dispath(getCitiesLookupSaga({ location: cityInputTextValue }));
-        navigate('/citiesLookup')
+        if (cityInputTextValue) {
+            dispath(getCitiesLookupSaga({ location: cityInputTextValue }));
+            navigate('/citiesLookup')
+        } else {
+            alert("Please input your locaton");
+        }
     };
 
     const handleChange = (e) => {
@@ -24,24 +29,24 @@ function QWeather() {
     }
 
     return (
-        <>
+        <div className='qweather'>
             <form onSubmit={handleSumit}>
-                <label htmlFor="cityInputText">City:&nbsp;</label>
+                <label htmlFor="cityInputText">City:</label>
                 <input
                     id="cityInputText"
                     type="text"
-                    placeholder="Search..."
+                    placeholder="e.g. Wuhan"
                     list="searchInput"
                     value={cityInputTextValue}
                     onChange={handleChange} />
                 <datalist id="searchInput">
                     {
-                        topCities.map(city => <option key={city.name} value={city.name} />)
+                        topCities && topCities.map(city => <option key={city.name} value={city.name} />)
                     }
                 </datalist>
-                <input type="submit" value="Submit" />
+                <button type='submit'>Submit</button>
             </form>
-        </>
+        </div>
     );
 }
 
