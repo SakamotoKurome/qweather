@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import CitiesLookup from './CitiesLookup';
+import CityWeather from './CityWeather';
 
 const API_KEY = '2fbc7c209b0a448f8dae0dc53ee5892e';
 const GEO_API = 'https://geoapi.qweather.com/v2/city/';
@@ -53,6 +55,7 @@ function QWeather() {
 
     const handleSumit = (e) => {
         e.preventDefault();
+        setCityWeather({});
         getCitiesLookup(cityInputTextValue).then(result => setCitiesLookup(result))
     };
 
@@ -83,24 +86,8 @@ function QWeather() {
                 </datalist>
                 <input type="submit" value="Submit" />
             </form>
-            <ul>
-                {
-                    citiesLookup.map(city => (
-                        <li key={city.id} onClick={(() => handleClick(city.id))}>
-                            {city.adm1 + city.adm2 + city.name}
-                        </li>
-                    ))
-                }
-            </ul>
-            <table>
-                <tbody>
-                    {
-                        Object.keys(cityWeather).map(key => (
-                            <tr key={key}><th>{key}</th><td>{cityWeather[key]}</td></tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+            <CitiesLookup cities={citiesLookup} onClick={handleClick} />
+            <CityWeather weather={cityWeather} />
         </>
     );
 }
